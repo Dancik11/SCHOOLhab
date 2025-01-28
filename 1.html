@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Электронное портфолио ученика</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://wallpapers.com/images/file/pastel-green-aesthetic-laptop-1920-x-1080-zihde6w3albat88l.jpg'); /* Укажите URL вашего изображения */
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background: rgba(76, 175, 80, 0.8);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            border-bottom: 5px solid #2e7d32;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        form {
+            margin-right: 20px;
+            flex: 1;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 400px;
+            border-collapse: collapse;
+            margin-left: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .decorative {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 120px;
+            height: 120px;
+            background: url('https://www.transparenttextures.com/patterns/green-paint-noise.png');
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Электронное портфолио ученика</h1>
+</header>
+
+<div class="container">
+    <form id="studentForm">
+        <label for="firstName">Имя:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label for="lastName">Фамилия:</label>
+        <input type="text" id="lastName" name="lastName" required>
+
+        <label for="class">Класс:</label>
+        <input type="text" id="class" name="class" required>
+
+        <label for="favoriteSubjects">Любимые предметы:</label>
+        <input type="text" id="favoriteSubjects" name="favoriteSubjects" required>
+
+        <label for="hobbies">Увлечения:</label>
+        <input type="text" id="hobbies" name="hobbies" required>
+        
+        <button type="submit">Добавить ученика</button>
+    </form>
+
+    <div>
+        <h2>Список учеников</h2>
+        <table id="list">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Класс</th>
+                    <th>Любимые предметы</th>
+                    <th>Увлечения</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Данные учеников будут добавлены здесь -->
+            </tbody>
+        </table>
+
+    </div>
+    
+    <div class="decorative"></div>
+</div>
+
+<script>
+    const studentForm = document.getElementById('studentForm');
+    const listTableBody = document.querySelector('#list tbody');
+
+    studentForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const studentClass = document.getElementById('class').value;
+        const favoriteSubjects = document.getElementById('favoriteSubjects').value;
+        const hobbies = document.getElementById('hobbies').value;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${firstName}</td><td>${lastName}</td><td>${studentClass}</td><td>${favoriteSubjects}</td><td>${hobbies}</td>`;
+        
+        listTableBody.appendChild(row);
+        
+        // Очистка формы
+        studentForm.reset();
+    });
+</script>
+
+</body>
+</html>
